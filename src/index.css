@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@font-face {
+  src: "/font/Vazirmatn-FD-Black.ttf";
+  font-family: "vazir";
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+  font-family: "vazir";
+  color: white;
+  font-size: 16px;
+}
+
+.css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root {
+  font-family: "vazir" !important;
+  /* right: 25px !important; */
+  color: rgba(255, 255, 255, 0.632) !important;
+}
+.css-113d811-MuiFormLabel-root-MuiInputLabel-root {
+  transform: translate(196px, -9px) scale(1) !important;
+}
+
+.css-113d811-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+  color: oklch(74.6% 0.16 232.661) !important;
+}
+.css-18p5xg2-MuiNotchedOutlined-root-MuiOutlinedInput-notchedOutline {
+  text-align: right !important;
+}
+.css-quhxjy-MuiInputBase-root-MuiOutlinedInput-root {
+  font-family: "vazir" !important;
+}
+.css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input {
+  color: white !important;
+}
+
+/* calendar */
+.rmdp-wrapper {
+  background-color: transparent !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+.rmdp-top-class {
+  width: 100% !important;
+  height: 100% !important;
+}
+.rmdp-calendar {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.rmdp-header-values {
+  color: white !important;
+}
+
+.rmdp-arrow-container {
+  align-items: center !important;
+}
+.rmdp-arrow {
+  color: #2b7fff !important;
+
+}
+
+.rmdp-day {
+  color: #f1f1f1 !important;
+}
+.rmdp-week-day {
+  color: #2b7fff !important;
+  font-family: "vazir" !important;
+  font-size: 1rem !important;
+}
+
+.rmdp-day-picker div {
+  width: 100% !important;
+}
+.rmdp-month-picker,
+.rmdp-year-picker{
+  background: #3f3f46 !important; 
+  border-radius: 1rem !important;
+}
