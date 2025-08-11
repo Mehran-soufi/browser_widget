@@ -13,17 +13,17 @@ function App() {
     >
       <div className="w-full h-full bg-black/40 flex items-center justify-center">
         <div className="xl:w-4/5 w-11/12 h-11/12">
-          <div className="w-full h-full grid grid-cols-4 lg:grid-rows-5 gap-4">
+          <div className="w-full h-full grid grid-cols-4 lg:grid-rows-6 gap-4">
             {/* Time & Date */}
-            <div className="lg:row-span-2 lg:col-end-2 lg:row-start-1 row-start-2 lg:col-span-1 md:col-span-2 col-span-full bg-zinc-800/40 backdrop-blur-sm rounded-lg p-4">
+            <div className="lg:row-span-3 lg:col-end-2 lg:row-start-1 row-start-2 lg:col-span-1 md:col-span-2 col-span-full bg-zinc-800/40 backdrop-blur-sm rounded-lg p-4">
               <Time />
             </div>
             {/* Search Box */}
-            <div className="lg:col-span-2 lg:row-span-2  col-span-full">
+            <div className="lg:col-span-2 lg:row-span-3 col-span-full">
               <SearchCom />
             </div>
             {/* Weather */}
-            <div className="lg:row-span-3 lg:col-span-1 md:col-span-2 col-span-full bg-zinc-800/40 backdrop-blur-sm rounded-lg p-4">
+            <div className="lg:row-span-4 lg:col-span-1 md:col-span-2 col-span-full bg-zinc-800/40 backdrop-blur-sm rounded-lg p-4">
               <Weather />
             </div>
             {/* Calendar */}

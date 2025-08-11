@@ -188,7 +188,7 @@ function Weather() {
               stroke: "#f3f4f6",
             },
           }}
-          margin={{ top: 0, bottom: 0, left: 0, right: 10 }}
+          margin={{ top: 10, bottom: 10, left: 0, right: 10 }}
         />
       )}
 

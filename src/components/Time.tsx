@@ -3,7 +3,9 @@ import type { EventType, TimeType } from "../types";
 
 function Time() {
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadingEvent, setLoadingEvent] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const [errorEvent, setErrorEvent] = useState<boolean>(false);
   const [time, setTime] = useState<TimeType | null>(null);
   const [events, setEvents] = useState<EventType | null>(null);
   const [fulltime, setFullTime] = useState<string>(() => {
@@ -28,17 +30,33 @@ function Time() {
     }
   }
 
-  async function getHoliday(year: number, month: number, day: number) {
+  async function getEvent(
+    year: string | number,
+    month: string | number,
+    day: string | number
+  ) {
+    setLoadingEvent(true);
+    setErrorEvent(false);
     try {
-      const res = await fetch(
-        `https://holidayapi.ir/jalali/${year}/${month}/${day}`
-      );
+      // آدرس اصلی API با توکن
+      const apiUrl = `https://holidayapi.ir/jalali/${year}/${month}/${day}?token=کلید_API_خودت`;
+
+      // استفاده از پروکسی AllOrigins برای حل مشکل CORS
+      const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(apiUrl)}`;
+
+      const res = await fetch(proxyUrl);
       if (!res.ok) throw new Error("خطا در دریافت مناسبت تاریخی");
+
       const resData = await res.json();
       setEvents(resData);
+      setErrorEvent(false);
+      setLoadingEvent(false);
     } catch (e) {
       console.error("خطا در دریافت مناسبت تاریخی:", e);
       setEvents(null);
+      setErrorEvent(true);
+    } finally {
+      setLoadingEvent(false);
     }
   }
 
@@ -60,35 +78,37 @@ function Time() {
   }, []);
 
   useEffect(() => {
-    if (
-      time &&
-      time.date &&
-      time.date.year &&
-      time.date.month &&
-      time.date.day
-    ) {
-      const year = Number(time.date.year) || new Date().getFullYear();
-      const month =
-        Number(time.date.month.number.fa) || new Date().getMonth() + 1;
-      const day = Number(time.date.day.number.fa) || new Date().getDate();
-      getHoliday(year, month, day);
+    if (time?.date?.year && time?.date?.month && time?.date?.day) {
+      const year = time.date.year.number.en;
+      const month = time.date.month.number.en;
+      const day = time.date.day.number.en;
+      getEvent(year, month, day);
     } else {
       const now = new Date();
-      const persianDate = new Intl.DateTimeFormat("fa-IR", {
+      const parts = new Intl.DateTimeFormat("fa-IR", {
         year: "numeric",
         month: "numeric",
         day: "numeric",
       }).formatToParts(now);
 
-      let year = 0,
-        month = 0,
-        day = 0;
-      for (const part of persianDate) {
-        if (part.type === "year") year = Number(part.value);
-        else if (part.type === "month") month = Number(part.value);
-        else if (part.type === "day") day = Number(part.value);
+      let year = "";
+      let month = "";
+      let day = "";
+
+      for (const part of parts) {
+        if (part.type === "year") year = part.value;
+        if (part.type === "month") month = part.value;
+        if (part.type === "day") day = part.value;
       }
-      if (year && month && day) getHoliday(year, month, day);
+
+      const toEnglishNumber = (str: string) =>
+        str.replace(/[۰-۹]/g, (d) => String("۰۱۲۳۴۵۶۷۸۹".indexOf(d)));
+
+      getEvent(
+        toEnglishNumber(year),
+        toEnglishNumber(month),
+        toEnglishNumber(day)
+      );
     }
   }, [time]);
 
@@ -239,18 +259,23 @@ function Time() {
           {displayTime.date.day?.events?.local?.text || "-"}
         </p>
       </div>
+
       <div className="w-full flex flex-col gap-1">
         <p className="font-semibold text-slate-300">مناسبت تاریخی:</p>
-        <p className="text-sm">
-          {events && events.events && events.events.length > 0
-            ? events.events.map((ev, i) => (
-                <span key={i}>
-                  {ev.description}
-                  {i !== events.events.length - 1 ? "، " : ""}
-                </span>
-              ))
-            : "-"}
-        </p>
+        {loadingEvent && <p>درحال بارگزاری...</p>}
+        {errorEvent && <p>-</p>}
+        {events && (
+          <p className="text-sm gap-0.5">
+            {events && events.events && events.events.length > 0
+              ? events.events.slice(0,2).map((ev, i) => (
+                  <span key={i}>
+                    {ev.description}
+                    {i !== events.events.length - 1 ? "، " : ""}
+                  </span>
+                ))
+              : "-"}
+          </p>
+        )}
       </div>
     </div>
   );
