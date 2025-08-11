@@ -84,7 +84,7 @@ npm start یا yarn start
 نکته: این روش فعلاً فقط برای اجرا در محیط محلی مناسب است و نسخه قابل استقرار (Deploy) ندارد.
 
 #### نمایی از ویجت : 
-![img1](/public/screenShot/img1.png)
+![img1](/public/screenshot/img1.png)
 
 #### مشارکت :
 
