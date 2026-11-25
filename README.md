@@ -1,102 +1,75 @@
-<div dir="rtl">
-# وقت نگار – ویجت فارسی نمایش ساعت، تاریخ و امکانات کاربردی
+# React + TypeScript + Vite
 
-## معرفی پروژه
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-وقت نگار یک ویجت کامل و فارسی است که امکانات متنوعی را در قالب یک ابزار ساده و کاربردی ارائه می‌دهد. این ویجت به شما امکان می‌دهد ساعت و تاریخ شمسی، میلادی و قمری را مشاهده کنید، مناسبت‌های آن روز و مناسبت‌های تاریخی را ببینید، تقویم شمسی داشته باشید و چندین قابلیت مهم دیگر را در یک رابط کاربری زیبا و ریسپانسیو تجربه کنید.
+Currently, two official plugins are available:
 
-## ویژگی‌ها
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-1. **ساعت و تاریخ:**
-   - نمایش ساعت دقیق به همراه تاریخ شمسی، میلادی و قمری
-   - نمایش مناسبت‌های آن روز و مناسبت‌های تاریخی مرتبط
-2. **تقویم شمسی:**  
-   نمایش تقویم کامل شمسی با قابلیت انتخاب تاریخ
-3. **جستجوی گوگل:**
-   - جستجوی کامل در موتور جستجوی گوگل
-   - قابلیت انتخاب از بین 16 شورتکات محبوب برای جستجوی سریع
-4. **لیست کارها:**
-   - امکان اضافه کردن، ویرایش، حذف و علامت‌گذاری کارهای انجام شده
-   - قابلیت انتخاب تاریخ برای هر کار
-5. **پیش‌بینی وضعیت آب و هوا:**
-   - نمایش وضعیت آب و هوایی شهرهای مختلف
-   - قابلیت جستجوی شهر برای مشاهده آب و هوا
-6. **قیمت‌ها:**
-   - نمایش قیمت ارزهای رایج، طلا و ارزهای دیجیتال
-7. **طراحی ریسپانسیو:**  
-   ویجت به خوبی در اندازه‌های مختلف صفحه نمایش (موبایل، تبلت، دسکتاپ) نمایش داده می‌شود.
+## React Compiler
 
-## 📥 دانلود فایل اجرایی
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-- [دانلود نسخه v1.0.1 (فایل zip)](https://github.com/Mehran-soufi/browser_widget/releases/download/widget/vaghtnegar_widget.rar)
+## Expanding the ESLint configuration
 
-## مراحل نصب اکستنشن در مرورگرها
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-### مرورگر Chrome یا Edge:
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-```bash
- 1. فعال‌سازی حالت توسعه‌دهنده :
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-به آدرس chrome://extensions/ یا edge://extensions/ برو.
-در گوشه‌ی بالا سمت راست، گزینه‌ی "Developer mode" را فعال کن.
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 
-2. نصب اکستنشن:
-روی دکمه‌ی "Load unpacked" کلیک کن.
-پوشه‌ی vaghtnegar_widget را انتخاب کن.
-
-3. استفاده از اکستنشن:
-پس از نصب، آیکون اکستنشن در نوار ابزار مرورگر ظاهر می‌شود.
-با کلیک روی آیکون، ویجت «وقت نگار» در پنجره‌ای جدید باز می‌شود.
 ```
 
-### مرورگر Firefox:
+You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
 
-```bash
- 1. فعال‌سازی حالت توسعه‌دهنده :
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-به آدرس about:debugging برو.
-گزینه‌ی "This Firefox" را انتخاب کن.
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 
-2. نصب اکستنشن:
-روی "Load Temporary Add-on" کلیک کن.
-فایل manifest.json موجود در پوشه‌ی vaghtnegar_widget را انتخاب کن.
-
-3. استفاده از اکستنشن:
-پس از نصب، آیکون اکستنشن در نوار ابزار مرورگر ظاهر می‌شود.
-با کلیک روی آیکون، ویجت «وقت نگار» در پنجره‌ای جدید باز می‌شود.
 ```
-
-## نصب و اجرا (محلی)
-
-برای استفاده از ویجت در حالت محلی کافیست مراحل زیر را طی کنید:
-
-1. کلون کردن پروژه:
-
-```bash
-git clone https://github.com/YourUsername/VaghtNegar.git
-
-2. ورود به پوشه پروژه:
-cd VaghtNegar
-
-3. نصب وابستگی‌ها:
-npm install یا yarn
-
-4. اجرای پروژه:
-npm start یا yarn start
-```
-
-نکته: این روش فعلاً فقط برای اجرا در محیط محلی مناسب است و نسخه قابل استقرار (Deploy) ندارد.
-
-#### نمایی از ویجت :
-
-![img1](/public/screenshot/img1.png)
-
-#### مشارکت :
-
-شما می‌توانید مشکلات (Issues) را گزارش کنید یا برای توسعه قابلیت‌های جدید Pull Request ارسال کنید.
-
-#### مجوز :
-
-این پروژه تحت مجوز MIT منتشر شده است.
-
-</div>
