@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   /* Typography */
   --font-primary: "Iranian Sans", Tahoma, sans-serif;
 
@@ -7,9 +7,19 @@
   --text-base: 14px;
   --text-md: 16px;
   --text-lg: 18px;
-  --text-xl: 24px;
-  --text-2xl: 32px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 32px;
   --text-clock: 56px;
+
+  --line-height-tight: 1.4;
+  --line-height-normal: 1.7;
+  --line-height-relaxed: 1.9;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 
   /* Spacing */
   --space-1: 4px;
@@ -19,22 +29,47 @@
   --space-5: 20px;
   --space-6: 24px;
   --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
 
   /* Radius */
   --radius-sm: 6px;
   --radius-md: 8px;
-  --radius-lg: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
 
   /* Accent */
   --color-accent: #20c7b5;
   --color-accent-hover: #18ad9e;
+  --color-accent-active: #13998d;
   --color-accent-soft: rgba(32, 199, 181, 0.12);
+  --color-accent-contrast: #071c1b;
 
   /* Layout */
   --sidebar-width: 240px;
+  --sidebar-collapsed-width: 72px;
   --header-height: 64px;
+  --content-max-width: 1920px;
+  --widget-min-width: 240px;
+  --widget-min-height: 160px;
+
+  /* Borders */
+  --border-width: 1px;
+  --border-width-strong: 2px;
 
   /* Transitions */
   --transition-fast: 150ms ease;
   --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+
+  /* Z-index */
+  --z-base: 0;
+  --z-widget: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-tooltip: 500;
 }

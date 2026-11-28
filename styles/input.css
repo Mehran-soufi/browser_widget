@@ -1,0 +1,110 @@
+.ui-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  width: 100%;
+}
+
+.ui-input__label {
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.ui-input__control {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  min-width: 0;
+  width: 100%;
+
+  padding: 0 var(--space-3);
+
+  background: var(--color-surface-secondary);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.ui-input__control:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-accent-soft);
+}
+
+.ui-input__field {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+
+  padding: 0;
+
+  color: var(--color-text-primary);
+  background: transparent;
+  border: none;
+  outline: none;
+
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  line-height: var(--line-height-normal);
+}
+
+.ui-input__field::placeholder {
+  color: var(--color-text-muted);
+}
+
+.ui-input__field:focus-visible {
+  outline: none;
+}
+
+.ui-input__element {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  color: var(--color-text-muted);
+}
+
+.ui-input--sm .ui-input__control {
+  min-height: 32px;
+}
+
+.ui-input--md .ui-input__control {
+  min-height: 40px;
+}
+
+.ui-input--lg .ui-input__control {
+  min-height: 48px;
+}
+
+.ui-input--lg .ui-input__field {
+  font-size: var(--text-base);
+}
+
+.ui-input--error .ui-input__control {
+  border-color: var(--color-danger);
+}
+
+.ui-input--error .ui-input__control:focus-within {
+  box-shadow: 0 0 0 2px var(--color-danger-soft);
+}
+
+.ui-input--disabled {
+  opacity: 0.6;
+}
+
+.ui-input__message {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: var(--line-height-normal);
+}
+
+.ui-input__message--error {
+  color: var(--color-danger);
+}
